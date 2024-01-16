@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Taking App</title>
+    <style>
+    body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .note-item {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+
+       
+        .btn {
+            padding: 0.5rem;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Note Taking App</h1>
+    </header>
+    <main>
+        <div class="note-list" id="noteList">
+            <h2>Note List</h2>
+            
+        </div>
+        <div class="note-detail" id="noteDetail">
+            <h2>Note Detail</h2>
+         
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const noteList = document.getElementById("noteList");
+            const noteDetail = document.getElementById("noteDetail");
+
+            const notes = [
+                { id: 1, title: "Note 1", content: "This is the content of Note 1" },
+                { id: 2, title: "Note 2", content: "This is the content of Note 2" },
+                
+            ];
+
+            // Function to render notes in the list
+            function renderNoteList() {
+                noteList.innerHTML = "";
+                notes.forEach(note => {
+                    const noteItem = document.createElement("div");
+                    noteItem.classList.add("note-item");
+                    noteItem.textContent = note.title;
+                    noteItem.addEventListener("click", () => showNoteDetail(note));
+                    noteList.appendChild(noteItem);
+                });
+            }
+
+            // Function to display note details
+            function showNoteDetail(note) {
+                noteDetail.innerHTML = `
+                    <h2>${note.title}</h2>
+                    <p>${note.content}</p>
+                `;
+            }
+
+            // Initial rendering
+            renderNoteList();
+        });
+    </script>
+</body>
+</html>
+
